@@ -9,6 +9,7 @@ import Fridge from "../components/Fridge";
 import MyItem from "../components/MyItem";
 import UpdatedItems from "../pages/UpdatedItems";
 import PrivateRouter from "./PrivateRouter";
+import Loading from "../pages/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -17,24 +18,29 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-
+        loader: () => fetch("http://localhost:8080/upcoming-expiry-foods"),
         Component: Home,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/auth/login",
         Component: Login,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/auth/register",
         Component: Register,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/fridge",
         loader: () => fetch("http://localhost:8080/all-food"),
         Component: Fridge,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/add-food",
+        hydrateFallbackElement: <Loading></Loading>,
         element: (
           <PrivateRouter>
             <AddFood></AddFood>
@@ -43,8 +49,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "foodDetails/:id",
+        hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
           fetch(`http://localhost:8080/foodDetails/${params.id}`),
+
         element: (
           <PrivateRouter>
             <FoodDetails></FoodDetails>
@@ -53,13 +61,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-item",
+        hydrateFallbackElement: <Loading></Loading>,
         loader: () => fetch("http://localhost:8080/my-item"),
         Component: MyItem,
       },
       {
         path: "/updated-item/:id",
+
         loader: ({ params }) =>
           fetch(`http://localhost:8080/foodDetails/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
         Component: UpdatedItems,
       },
     ],
