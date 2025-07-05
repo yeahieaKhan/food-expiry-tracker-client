@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 
 import { AuthContext } from "../contextApi/AuthContext";
 
 const NavBar = () => {
   const { user, userLogOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   console.log(user);
   const links = (
     <>
@@ -44,6 +46,7 @@ const NavBar = () => {
     userLogOut()
       .then(() => {
         console.log("logOut successfully");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log("Something went wrong: " + error.message);
