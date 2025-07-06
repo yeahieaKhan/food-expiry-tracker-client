@@ -10,6 +10,7 @@ import MyItem from "../components/MyItem";
 import UpdatedItems from "../pages/UpdatedItems";
 import PrivateRouter from "./PrivateRouter";
 import Loading from "../pages/Loading";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -74,5 +75,9 @@ export const router = createBrowserRouter([
         Component: UpdatedItems,
       },
     ],
+  },
+  {
+    path: "/*",
+    Component: ErrorPage,
   },
 ]);
