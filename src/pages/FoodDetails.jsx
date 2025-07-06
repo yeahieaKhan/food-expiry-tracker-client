@@ -61,13 +61,13 @@ const FoodDetails = () => {
       </div>
       <div className="border-t-amber-300 mt-20 mr-2">
         <h2>Comments:</h2>
-        <div className="comments-list">
-          {comments.map((comment, index) => (
+        {/* <div className="comments-list">
+          {comments?.map((comment, index) => (
             <div key={index} className="comment-item">
               <p>{comment.text}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
