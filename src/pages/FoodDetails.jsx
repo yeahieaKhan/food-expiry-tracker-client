@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 
 const FoodDetails = () => {
   const data = useLoaderData();
   const [comments, setComments] = useState([]);
+  // const { user } = useContext();
   const {
     _id,
     category,
