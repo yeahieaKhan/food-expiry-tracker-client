@@ -1,4 +1,4 @@
-images 
+images
 pasta
 
 https://i.ibb.co/k62DDmTw/mae-mu-Pvclb-i-HHYY-unsplash-1.jpg
@@ -7,20 +7,51 @@ https://i.ibb.co/GQYMT4vM/krista-stucchio-2-CZ0-Zpuj-g-U-unsplash-1.jpg
 https://i.ibb.co/GQj9xbN0/nicholas-grande-d9jc-PTRD9fo-unsplash-2.jpg
 https://i.ibb.co/GQj9xbN0/nicholas-grande-d9jc-PTRD9fo-unsplash-2.jpg
 
-
-
-
-
 // piza
-
-
-
-
 
 //
 
-
-
-
 https://i.ibb.co/TMrq7Hvy/amirali-mirhashemian-jh5-Xy-K4-Rr3-Y-unsplash-3-1.jpg
 
+// Fetch comments
+useEffect(() => {
+axios
+.get(`http://localhost:8080/foodDetails/${_id}/comments`)
+.then((res) => {
+console.log("Fetched comments:", res.data);
+setComments(res.data); // it’s always an array now
+})
+.catch((err) => console.error("Error fetching comments", err));
+}, [_id]);
+
+// Handle comment submission
+const handleComment = (e) => {
+e.preventDefault();
+const commentText = e.target.comment.value;
+
+    axios
+      .post(`http://localhost:8080/foodDetails/${_id}/comment`, {
+        comment: commentText,
+      })
+      .then((res) => {
+        console.log("New comment added:", res.data);
+        setComments((prev) => [...prev, { text: commentText }]);
+        e.target.reset();
+      })
+      .catch((err) => console.error("Error adding comment", err));
+
+};
+
+const [filteredData, setFilteredData] = useState(data);
+console.log(filteredData);
+console.log(data);
+const filterOptions = [...new Set(data.map((value) => value.category))];
+
+const filterCategory = (cat) => {
+if (cat === "All") {
+setFilteredData(data);
+} else {
+const result = data.filter((value) => value.category === cat);
+setFilteredData(result);
+}
+};

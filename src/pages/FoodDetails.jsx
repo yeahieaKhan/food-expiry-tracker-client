@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
+import { AuthContext } from "../contextApi/AuthContext";
 
 const FoodDetails = () => {
   const data = useLoaderData();
-  const [comments, setComments] = useState([]);
-  // const { user } = useContext();
+  const { user } = useContext(AuthContext);
+
   const {
     _id,
     category,
@@ -14,62 +15,51 @@ const FoodDetails = () => {
     quantity,
     description,
     expiryDate,
+    userEmail,
   } = data;
 
-  console.log(data);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/foodDetails/${_id}/comments`)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.error("Error fetching comments", err));
-  }, [_id]);
-
-  const HandleComment = (e) => {
-    e.preventDefault();
-    const comment = e.target.comments.value;
-    axios
-      .post(`http://localhost:8080/foodDetails/${_id}/comment`, {
-        comment,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  };
   return (
-    <div className="w-8/12 mx-auto grid grid-cols-2">
+    <div className="w-8/12 mx-auto grid grid-cols-2 py-20 gap-10">
+      {/* Food Details */}
       <div>
-        <img src={imageURL} alt="" />
+        <img src={imageURL} alt={foodtitle} className="rounded shadow-lg" />
       </div>
+
       <div>
-        <div>
-          <h2>Category : {category}</h2>
-          <h2> Food Title: {foodtitle}</h2>
-          <h2>Quantity : {quantity}</h2>
-          <h2>Expiry Date : {expiryDate}</h2>
-          <h2>Description : {description}</h2>
+        <h2 className="text-xl font-bold mb-2">Category: {category}</h2>
+        <h2 className="text-lg">Food Title: {foodtitle}</h2>
+        <h2>Quantity: {quantity}</h2>
+        <h2>Expiry Date: {expiryDate}</h2>
+        <h2>Description: {description}</h2>
+        <h2 className="text-sm text-gray-500">Added By: {userEmail}</h2>
+      </div>
+
+      {/* Comment Box (only for owner) */}
+      <div className="mt-20 col-span-2 w-full">
+        {user?.email === userEmail && (
+          <form className="fieldset">
+            <legend className="fieldset-legend">What's on your mind?</legend>
+            <textarea
+              className="textarea h-24 w-full border rounded p-2"
+              placeholder="Input message"
+              name="comment"
+              required
+            ></textarea>
+            <input
+              className="btn btn-secondary mt-2"
+              type="submit"
+              value="Submit Comment"
+            />
+          </form>
+        )}
+      </div>
+
+      {user?.email === userEmail && (
+        <div className="border-t-amber-300 col-span-2 mt-10 mr-2">
+          <h2 className="text-xl font-semibold mb-3">Comments:</h2>
+          <div className="comments-list space-y-2"></div>
         </div>
-      </div>
-      <div className="mt-20 w-full">
-        <form className="fieldset" onSubmit={HandleComment}>
-          <legend className="fieldset-legend">What is your mind?</legend>
-          <textarea
-            className="textarea h-24 w-full"
-            placeholder="Input message"
-            name="comment"
-          ></textarea>
-          <input className="btn btn-secondary" type="submit" />
-        </form>
-      </div>
-      <div className="border-t-amber-300 mt-20 mr-2">
-        <h2>Comments:</h2>
-        {/* <div className="comments-list">
-          {comments?.map((comment, index) => (
-            <div key={index} className="comment-item">
-              <p>{comment.text}</p>
-            </div>
-          ))}
-        </div> */}
-      </div>
+      )}
     </div>
   );
 };
