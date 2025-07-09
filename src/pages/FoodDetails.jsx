@@ -36,30 +36,38 @@ const FoodDetails = () => {
 
       {/* Comment Box (only for owner) */}
       <div className="mt-20 col-span-2 w-full">
-        {user?.email === userEmail && (
-          <form className="fieldset">
-            <legend className="fieldset-legend">What's on your mind?</legend>
-            <textarea
-              className="textarea h-24 w-full border rounded p-2"
-              placeholder="Input message"
-              name="comment"
-              required
-            ></textarea>
-            <input
-              className="btn btn-secondary mt-2"
+        <form className="fieldset">
+          <legend className="fieldset-legend">What's on your mind?</legend>
+          <textarea
+            className="textarea h-24 w-full border rounded p-2"
+            placeholder="Input message"
+            name="comment"
+            required
+          ></textarea>
+
+          {user?.email === userEmail ? (
+            <button
+              className="btn btn-secondary border-amber-400 text-black disabled:opacity-50"
               type="submit"
-              value="Submit Comment"
-            />
-          </form>
-        )}
+            >
+              Submit
+            </button>
+          ) : (
+            <button
+              className="btn btn-secondary border-amber-400 text-black disabled:opacity-50"
+              type="submit"
+              disabled
+            >
+              Submit
+            </button>
+          )}
+        </form>
       </div>
 
-      {user?.email === userEmail && (
-        <div className="border-t-amber-300 col-span-2 mt-10 mr-2">
-          <h2 className="text-xl font-semibold mb-3">Comments:</h2>
-          <div className="comments-list space-y-2"></div>
-        </div>
-      )}
+      <div className="border-t-amber-300 col-span-2 mt-10 mr-2">
+        <h2 className="text-xl font-semibold mb-3">Comments:</h2>
+        <div className="comments-list space-y-2"></div>
+      </div>
     </div>
   );
 };

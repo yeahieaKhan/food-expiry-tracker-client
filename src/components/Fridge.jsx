@@ -1,22 +1,41 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import AllFoodPage from "../pages/AllFoodPage";
+import axios from "axios";
 
 const Fridge = () => {
   const data = useLoaderData();
   const [filteredData, setFilteredData] = useState(data);
+  const [searchData, setSearchData] = useState([]);
+
   console.log(filteredData);
   console.log(data);
+
   const filterOptions = [...new Set(data.map((value) => value.category))];
   // const filterOptions = data.map((value) => value.category);
 
   const filterCategory = (cat) => {
-    if (cat === "All") {
+    if (cat == "All") {
       setFilteredData(data);
     } else {
       const result = data.filter((value) => value.category === cat);
       setFilteredData(result);
     }
+  };
+
+  // search
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const seach = e.target.search.value;
+    axios
+      .get(`http://localhost:8080/search-stored-food?key=${seach}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log("internal server error");
+      });
   };
 
   return (
@@ -41,7 +60,15 @@ const Fridge = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search" />
+            <form onSubmit={handleSearch}>
+              <input
+                type="search"
+                name="search"
+                required
+                placeholder="Search"
+              />
+              <button className="btn btn-secondary">search</button>
+            </form>
           </label>
         </div>
         <div>
