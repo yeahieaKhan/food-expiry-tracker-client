@@ -1,26 +1,29 @@
 import React from "react";
+import slider from "../assets/slide-1.jpg";
+import slider1 from "../assets/slide-2.jpg";
+import slider2 from "../assets/slide-3.jpg";
 
 const HomeSlider = () => {
   return (
     <div>
-      <div className="carousel w-full relative">
-        <div id="item1" className="carousel-item w-full ">
-          <img
-            src="https://i.ibb.co/gM1H6qCQ/eaters-collective-dd-ZYOt-ZUn-Bk-unsplash-1.jpg"
-            className="w-full"
-          />
+      <div className="carousel w-full ">
+        <div id="item1" className="carousel-item  w-full">
+          <img src={slider} className="w-full h-4/5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="text-white text-4xl font-bold">Hello Bangladesh</h2>
+          </div>
         </div>
-        <div id="item2" className="carousel-item w-full relative">
-          <img
-            src="https://i.ibb.co/SDB9ygCY/amadeus-moga-H5-Z8wov-S9ic-unsplash-1.jpg"
-            className="w-full"
-          />
+        <div id="item2" className="carousel-item w-full ">
+          <img src={slider1} className="w-full h-4/5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="text-white text-4xl font-bold">Hello Bangladesh</h2>
+          </div>
         </div>
-        <div id="item3" className="carousel-item w-full">
-          <img
-            src="https://i.ibb.co/672Sghwq/haseeb-jamil-J9l-D6-FS6-cs-unsplash-1.jpg"
-            className="w-full"
-          />
+        <div id="item3" className="carousel-item w-full relative">
+          <img src={slider2} className="w-full h-4/5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="text-white text-4xl font-bold">Hello Bangladesh</h2>
+          </div>
         </div>
       </div>
       <div className="flex w-full justify-center gap-2 py-2">

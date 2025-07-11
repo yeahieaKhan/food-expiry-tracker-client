@@ -7,9 +7,12 @@ import Swal from "sweetalert2";
 const MyItem = () => {
   const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
+  console.log(user.accessToken);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/my-item?email=${user.email}`)
+    fetch(`http://localhost:8080/my-item?email=${user.email}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

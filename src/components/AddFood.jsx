@@ -17,7 +17,9 @@ const AddFood = () => {
     console.log({ addFoodData });
 
     axios
-      .post("http://localhost:8080/add-food", addFoodData)
+      .post("http://localhost:8080/add-food", addFoodData, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("server response data", res.data);
         if (res.data.insertedId) {
@@ -73,7 +75,7 @@ const AddFood = () => {
                 type="number"
                 className="input w-full"
                 name="quantity"
-                placeholder="Meeting Location"
+                placeholder="Quantity"
                 required
               />
             </fieldset>

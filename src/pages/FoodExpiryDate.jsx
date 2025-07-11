@@ -24,6 +24,7 @@ const FoodExpiryDate = ({ food }) => {
             <h2 className="card-title">{category}</h2>
           </div>
           <h2>Expiry Date : {expiryDate}</h2>
+
           <div className="card-actions justify-end">
             <button className="btn btn-secondary">
               <Link to={`/foodDetails/${_id}`}>View Details</Link>

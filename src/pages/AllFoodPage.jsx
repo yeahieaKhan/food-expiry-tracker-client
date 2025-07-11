@@ -12,11 +12,19 @@ const AllFoodPage = ({ food }) => {
     _id,
   } = food;
 
+  const expireFood = new Date(expiryDate) < new Date();
+  console.log(expireFood);
+
   return (
     <div>
       <div className="card  bg-base-100 w-96 shadow-sm">
-        <figure>
+        <figure className="relative">
           <img src={imageURL} alt="Shoes" />
+          {expireFood && (
+            <div className="badge badge-error text-black font-bold absolute top-0 left-0">
+              Expired
+            </div>
+          )}
         </figure>
         <div className="card-body">
           <div className="flex justify-between">

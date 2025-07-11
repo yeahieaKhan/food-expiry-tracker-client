@@ -1,25 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import AllFoodPage from "../pages/AllFoodPage";
 import axios from "axios";
 
 const Fridge = () => {
   const data = useLoaderData();
-  const [filteredData, setFilteredData] = useState(data);
-  const [searchData, setSearchData] = useState([]);
 
-  console.log(filteredData);
+  const [searchData, setSearchData] = useState(data);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/expire-food")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(searchData);
   console.log(data);
 
   const filterOptions = [...new Set(data.map((value) => value.category))];
-  // const filterOptions = data.map((value) => value.category);
 
   const filterCategory = (cat) => {
     if (cat == "All") {
-      setFilteredData(data);
+      setSearchData(data);
     } else {
       const result = data.filter((value) => value.category === cat);
-      setFilteredData(result);
+      setSearchData(result);
     }
   };
 
@@ -31,7 +41,8 @@ const Fridge = () => {
     axios
       .get(`http://localhost:8080/search-stored-food?key=${seach}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        setSearchData(res.data);
       })
       .catch((error) => {
         console.log("internal server error");
@@ -41,7 +52,7 @@ const Fridge = () => {
   return (
     <div>
       <h2 className="text-3xl font-bold pt-20 text-center">All Food Items</h2>
-      <div className="flex items-center justify-around">
+      <div className="md:flex items-center justify-around">
         <div>
           <label className="input">
             <svg
@@ -62,18 +73,19 @@ const Fridge = () => {
             </svg>
             <form onSubmit={handleSearch}>
               <input
+                className="border-none  mx-auto w-full outline-none focus:outline-none "
                 type="search"
                 name="search"
                 required
                 placeholder="Search"
               />
-              <button className="btn btn-secondary">search</button>
+              <button className="btn btn-secondary ml-2">Search</button>
             </form>
           </label>
         </div>
         <div>
           <fieldset className="fieldset  p-4">
-            <label className="label">Food Category</label>
+            <label className="label font-bold">Food Category</label>
             <select
               name="category"
               className="select w-full"
@@ -92,8 +104,8 @@ const Fridge = () => {
         </div>
       </div>
 
-      <div className="grid md:w-7xl py-20 mx-auto md:grid-cols-3">
-        {filteredData.map((food) => (
+      <div className="grid lg:w-7xl py-20 mx-auto md:grid-cols-2  lg:grid-cols-3">
+        {searchData.map((food) => (
           <AllFoodPage key={food._id} food={food}></AllFoodPage>
         ))}
       </div>
