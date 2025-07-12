@@ -10,7 +10,7 @@ const MyItem = () => {
   console.log(user.accessToken);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/my-item?email=${user.email}`, {
+    fetch(`https://fire-expiry.vercel.app/my-item?email=${user.email}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -39,7 +39,7 @@ const MyItem = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:8080/item-delete/${id}`)
+          .delete(`https://fire-expiry.vercel.app/item-delete/${id}`)
           .then((res) => {
             console.log("deleted data", res.data);
 

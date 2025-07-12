@@ -24,7 +24,7 @@ const FoodDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/foodDetails/${_id}/comments`)
+      .get(`https://fire-expiry.vercel.app/foodDetails/${_id}/comments`)
       .then((res) => {
         console.log(res.data);
         setComments(res.data);
@@ -41,7 +41,7 @@ const FoodDetails = () => {
     console.log(commetsBox);
     console.log(_id);
 
-    fetch(`http://localhost:8080/foodDetails/${_id}/comment`, {
+    fetch(`https://fire-expiry.vercel.app/foodDetails/${_id}/comment`, {
       method: "POST",
       headers: {
         "context-type": "application/json",
@@ -50,7 +50,7 @@ const FoodDetails = () => {
     });
 
     axios
-      .post(`http://localhost:8080/foodDetails/${_id}/comment`, {
+      .post(`https://fire-expiry.vercel.app/foodDetails/${_id}/comment`, {
         comment: commetsBox,
       })
       .then((res) => {
@@ -66,7 +66,7 @@ const FoodDetails = () => {
           ]);
 
           Swal.fire({
-            title: "Add Food successfully",
+            title: "Comment successfully",
             icon: "success",
             draggable: true,
           });

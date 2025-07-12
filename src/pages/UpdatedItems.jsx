@@ -26,7 +26,7 @@ const UpdatedItems = () => {
     console.log(updatedFood);
 
     axios
-      .put(`http://localhost:8080/updated-item/${_id}`, updatedFood)
+      .put(`https://fire-expiry.vercel.app/updated-item/${_id}`, updatedFood)
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount) {

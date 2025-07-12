@@ -19,7 +19,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:8080/upcoming-expiry-foods"),
+        loader: () =>
+          fetch("https://fire-expiry.vercel.app/upcoming-expiry-foods"),
         Component: Home,
         hydrateFallbackElement: <Loading></Loading>,
       },
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/fridge",
-        loader: () => fetch("http://localhost:8080/all-food"),
+        loader: () => fetch("https://fire-expiry.vercel.app/all-food"),
         Component: Fridge,
         hydrateFallbackElement: <Loading></Loading>,
       },
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
         path: "foodDetails/:id",
         hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
-          fetch(`http://localhost:8080/foodDetails/${params.id}`),
+          fetch(`https://fire-expiry.vercel.app/foodDetails/${params.id}`),
 
         element: (
           <PrivateRouter>
@@ -63,14 +64,14 @@ export const router = createBrowserRouter([
       {
         path: "/my-item",
         hydrateFallbackElement: <Loading></Loading>,
-        loader: () => fetch("http://localhost:8080/my-item"),
+        loader: () => fetch("https://fire-expiry.vercel.app/my-item"),
         Component: MyItem,
       },
       {
         path: "/updated-item/:id",
 
         loader: ({ params }) =>
-          fetch(`http://localhost:8080/foodDetails/${params.id}`),
+          fetch(`https://fire-expiry.vercel.app/foodDetails/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
         Component: UpdatedItems,
       },

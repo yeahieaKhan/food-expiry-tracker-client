@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
         const userData = { email: currentUser.email };
 
         axios
-          .post("http://localhost:8080/jwt", userData, {
+          .post("https://fire-expiry.vercel.app/jwt", userData, {
             withCredentials: true,
           })
           .then((res) => {

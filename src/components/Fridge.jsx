@@ -10,7 +10,7 @@ const Fridge = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/expire-food")
+      .get("https://fire-expiry.vercel.app/expire-food")
       .then((res) => {
         console.log(res.data);
       })
@@ -39,7 +39,7 @@ const Fridge = () => {
     e.preventDefault();
     const seach = e.target.search.value;
     axios
-      .get(`http://localhost:8080/search-stored-food?key=${seach}`)
+      .get(`https://fire-expiry.vercel.app/search-stored-food?key=${seach}`)
       .then((res) => {
         // console.log(res.data);
         setSearchData(res.data);

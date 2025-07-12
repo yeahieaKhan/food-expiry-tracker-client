@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { AuthContext } from "../contextApi/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 // import { useNavigate } from "react-router";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleCreate = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,7 +18,7 @@ const AddFood = () => {
     console.log({ addFoodData });
 
     axios
-      .post("http://localhost:8080/add-food", addFoodData, {
+      .post("https://fire-expiry.vercel.app/add-food", addFoodData, {
         withCredentials: true,
       })
       .then((res) => {
@@ -29,7 +30,7 @@ const AddFood = () => {
             draggable: true,
           });
 
-          // navigate("/");
+          navigate("/my-item");
         }
       })
       .catch((err) => {
