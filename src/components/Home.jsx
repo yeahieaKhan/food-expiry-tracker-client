@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import FoodExpiryDate from "../pages/FoodExpiryDate";
 import HomeSlider from "../pages/HomeSlider";
 import CounterUpFood from "./CounterUpFood";
+import WhyChooseUs from "../pages/WhyChooseUs";
 
 const Home = () => {
   const data = useLoaderData();
@@ -24,6 +25,7 @@ const Home = () => {
       <div>
         <CounterUpFood data={data}></CounterUpFood>
       </div>
+      <WhyChooseUs></WhyChooseUs>
     </div>
   );
 };

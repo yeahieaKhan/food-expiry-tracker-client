@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "https://i.ibb.co.com/S7BKd4HM/h2-blog1.png",
+    "title": "Menu for every taste",
+    "description": "Dolor sit amet, consectetur adipisicing elit et molestias possimus"
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://i.ibb.co.com/Pv91tzrC/h2-blog2.png",
+    "title": "Always fresh ingredients",
+    "description": "Assumenda possimus eaque illo iste, autem. Porro eveniet autem"
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://i.ibb.co.com/zHsGMD21/h2-blog3.png",
+    "title": "Experienced chefs",
+    "description": "Rolorem, beatae dolorum, praesentium itaque et quam quaerat"
+  }
+]
