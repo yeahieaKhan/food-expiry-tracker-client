@@ -18,7 +18,7 @@ const AddFood = () => {
     console.log({ addFoodData });
 
     axios
-      .post("https://fire-expiry.vercel.app/add-food", addFoodData, {
+      .post("http://localhost:3000/add-food", addFoodData, {
         withCredentials: true,
       })
       .then((res) => {

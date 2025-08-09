@@ -24,7 +24,7 @@ const FoodDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://fire-expiry.vercel.app/foodDetails/${_id}/comments`)
+      .get(`http://localhost:3000/foodDetails/${_id}/comments`)
       .then((res) => {
         console.log(res.data);
         setComments(res.data);
@@ -41,7 +41,7 @@ const FoodDetails = () => {
     console.log(commetsBox);
     console.log(_id);
 
-    fetch(`https://fire-expiry.vercel.app/foodDetails/${_id}/comment`, {
+    fetch(`http://localhost:3000/foodDetails/${_id}/comment`, {
       method: "POST",
       headers: {
         "context-type": "application/json",
@@ -50,7 +50,7 @@ const FoodDetails = () => {
     });
 
     axios
-      .post(`https://fire-expiry.vercel.app/foodDetails/${_id}/comment`, {
+      .post(`http://localhost:3000/foodDetails/${_id}/comment`, {
         comment: commetsBox,
       })
       .then((res) => {
@@ -93,12 +93,7 @@ const FoodDetails = () => {
       // Render a completed state
       return <Completionist />;
     } else {
-      // Render a countdown
       return (
-        // <span className="font-bold text-xl">
-        //   {days} D: {hours} H : {minutes} M: {seconds}
-        // </span>
-
         <>
           <div className="flex gap-4 text-center rounded p-2">
             <div className="flex flex-col items-center">

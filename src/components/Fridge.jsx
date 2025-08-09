@@ -5,27 +5,21 @@ import axios from "axios";
 
 const Fridge = () => {
   const data = useLoaderData();
-
   const [searchData, setSearchData] = useState(data);
 
+  // fetch expire food (you can use it if needed)
   useEffect(() => {
     axios
-      .get("https://fire-expiry.vercel.app/expire-food")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .get("http://localhost:3000/expire-food")
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
   }, []);
-
-  console.log(searchData);
-  console.log(data);
 
   const filterOptions = [...new Set(data.map((value) => value.category))];
 
+  // filter by category
   const filterCategory = (cat) => {
-    if (cat == "All") {
+    if (cat === "All") {
       setSearchData(data);
     } else {
       const result = data.filter((value) => value.category === cat);
@@ -33,81 +27,96 @@ const Fridge = () => {
     }
   };
 
-  // search
+  // search on input change
+  const handleSearchChange = (e) => {
+    const searchValue = e.target.value.trim();
+    if (!searchValue) {
+      setSearchData(data);
+      return;
+    }
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const seach = e.target.search.value;
     axios
-      .get(`https://fire-expiry.vercel.app/search-stored-food?key=${seach}`)
+      .get(`http://localhost:3000/search-stored-food?key=${searchValue}`)
       .then((res) => {
-        // console.log(res.data);
         setSearchData(res.data);
       })
-      .catch((error) => {
+      .catch(() => {
         console.log("internal server error");
       });
   };
 
   return (
-    <div>
+    <div className="px-6">
       <h2 className="text-3xl font-bold pt-20 text-center">All Food Items</h2>
-      <div className="md:flex items-center justify-around">
-        <div>
-          <label className="input">
-            <svg
-              className="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2.5"
-                fill="none"
-                stroke="currentColor"
+
+      <div className="grid grid-cols-12 gap-28">
+        {/* Sidebar Filters */}
+        <div className="col-span-2 space-y-6 p-4">
+          {/* Search input */}
+          <div>
+            <label className="input flex items-center gap-2">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
               >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </g>
-            </svg>
-            <form onSubmit={handleSearch}>
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
               <input
-                className="border-none  mx-auto w-full outline-none focus:outline-none "
+                className="border-none w-full outline-none focus:outline-none"
                 type="search"
                 name="search"
-                required
                 placeholder="Search"
+                onChange={handleSearchChange}
               />
-              <button className="btn btn-secondary ml-2">Search</button>
-            </form>
-          </label>
-        </div>
-        <div>
-          <fieldset className="fieldset  p-4">
-            <label className="label font-bold">Food Category</label>
-            <select
-              name="category"
-              className="select w-full"
-              required
-              onChange={(e) => filterCategory(e.target.value)}
-            >
-              <option disabled selected value="">
-                Select a category
-              </option>
-              <option>All</option>
-              {filterOptions.map((options) => (
-                <option>{options}</option>
-              ))}
-            </select>
-          </fieldset>
-        </div>
-      </div>
+            </label>
+          </div>
 
-      <div className="grid lg:w-7xl py-20 mx-auto md:grid-cols-2  lg:grid-cols-3">
-        {searchData.map((food) => (
-          <AllFoodPage key={food._id} food={food}></AllFoodPage>
-        ))}
+          {/* Radio buttons for category */}
+          <div>
+            <label className="label font-bold">Food Category</label>
+            <div className="space-y-2">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="category"
+                  value="All"
+                  onChange={(e) => filterCategory(e.target.value)}
+                />
+                All
+              </label>
+              {filterOptions.map((option) => (
+                <label key={option} className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="category"
+                    value={option}
+                    onChange={(e) => filterCategory(e.target.value)}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Food list */}
+        <div className="col-span-10">
+          <div className="grid lg:max-w-7xl py-20 mx-auto md:grid-cols-4 gap-2 lg:grid-cols-4">
+            {searchData.map((food) => (
+              <AllFoodPage key={food._id} food={food}></AllFoodPage>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const CounterUpFood = ({ data }) => {
 
   useEffect(() => {
     axios
-      .get("https://fire-expiry.vercel.app/expire-food")
+      .get("http://localhost:3000/expire-food")
       .then((res) => {
         console.log(res.data);
         setDateExpire(res.data);

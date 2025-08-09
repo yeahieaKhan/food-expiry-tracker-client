@@ -17,8 +17,8 @@ const AllFoodPage = ({ food }) => {
 
   return (
     <div>
-      <div className="card  bg-base-100 w-96 shadow-sm">
-        <figure className="relative">
+      <div className="card  bg-base-100  shadow-sm">
+        <figure className="relative max-h-48">
           <img src={imageURL} alt="Shoes" />
           {expireFood && (
             <div className="badge badge-error text-black font-bold absolute top-0 left-0">
