@@ -38,7 +38,9 @@ const FeatureItems = () => {
         slidesPerView={4}
         spaceBetween={30}
         freeMode={true}
-        pagination={{ clickable: true }}
+        npm
+        install
+        aos
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -48,7 +50,10 @@ const FeatureItems = () => {
       >
         {allSlides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="flex items-center w-[300px] bg-white shadow-md rounded-lg p-4 space-x-4">
+            <div
+              className="flex items-center w-[300px] bg-white shadow-md rounded-lg p-4 space-x-4"
+              data-aos="fade-down"
+            >
               <img
                 src={slide.src}
                 alt={slide.alt}

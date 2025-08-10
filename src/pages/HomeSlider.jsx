@@ -23,10 +23,10 @@ const HomeSlider = () => {
             alt="Slide 1"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 p-4">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4" data-aos="fade-up">
               Find Your Best Healthy &amp; Tasty Food.
             </h2>
-            <p className="max-w-xl mb-6">
+            <p className="max-w-xl mb-6" data-aos="fade-down">
               It is a long established fact that a reader will be distracted by
               the readable content of a page.
             </p>
@@ -68,7 +68,9 @@ const HomeSlider = () => {
               It is a long established fact that a reader will be distracted by
               the readable content of a page.
             </p>
-            <button className="btn btn-secondary">Discover More</button>
+            <button className="btn btn-secondary" data-aos="fade-down">
+              Discover More
+            </button>
           </div>
         </div>
       </Carousel>

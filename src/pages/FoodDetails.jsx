@@ -122,11 +122,11 @@ const FoodDetails = () => {
     <>
       <div className="md:w-7xl mx-auto grid px-5 md:px-0 py-20 md:grid-cols-2">
         {/* Food Details */}
-        <div>
+        <div data-aos="fade-up-right">
           <img src={imageURL} className="rounded shadow-lg" />
         </div>
 
-        <div className="mt-10 md:ml-20">
+        <div className="mt-10 md:ml-20" data-aos="fade-up-left">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-bold mb-2">Category: {category}</h2>
           </div>

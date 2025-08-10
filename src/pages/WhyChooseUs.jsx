@@ -20,7 +20,10 @@ const WhyChooseUs = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3  md:max-w-7xl gap-4 px-5 mx-auto">
+      <div
+        className="grid md:grid-cols-3  md:max-w-7xl gap-4 px-5 mx-auto"
+        data-aos="fade-left"
+      >
         {data.map((choose, index) => (
           <div className="md:max-w-96 mx-auto">
             <div>

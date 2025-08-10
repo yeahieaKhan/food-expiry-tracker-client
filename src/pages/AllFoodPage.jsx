@@ -17,7 +17,7 @@ const AllFoodPage = ({ food }) => {
 
   return (
     <div>
-      <div className="card  bg-base-100  shadow-sm">
+      <div className="card  bg-base-100  shadow-sm" data-aos="fade-down">
         <figure className="relative max-h-48">
           <img src={imageURL} alt="Shoes" />
           {expireFood && (
