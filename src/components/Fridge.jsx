@@ -130,7 +130,7 @@ const Fridge = () => {
               htmlFor="sortQuantity"
               className="font-semibold mb-2 block text-gray-700"
             >
-              Sort By Quantity
+              Sort By Prices
             </label>
             <select
               id="sortQuantity"

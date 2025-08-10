@@ -143,7 +143,7 @@ const FoodDetails = () => {
         </div>
       </div>
       {/* Comment Box (only for owner) */}
-      <div className="mt-20 px-5 col-span-2 w-full">
+      <div className="mt-20 px-4 md:px-30 col-span-2 md:w-1/2">
         <form className="fieldset" onSubmit={handleCoomments}>
           <legend className="fieldset-legend">What's on your mind?</legend>
           <textarea
@@ -162,7 +162,7 @@ const FoodDetails = () => {
             </button>
           ) : (
             <button
-              className="btn btn-secondary border-amber-400 text-black disabled:opacity-50"
+              className="btn btn-secondary  border-amber-400 text-black disabled:opacity-50"
               type="submit"
               disabled
             >
@@ -172,7 +172,7 @@ const FoodDetails = () => {
         </form>
       </div>
 
-      <div className="p-4 border rounded">
+      <div className="p-4 rounded md:px-30 md:w-1/2">
         <h2 className="text-xl font-bold mb-4">Comments</h2>
         {comments.length === 0 ? (
           <p className="text-gray-600">No comments yet.</p>

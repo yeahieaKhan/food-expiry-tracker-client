@@ -4,6 +4,7 @@ import FoodExpiryDate from "../pages/FoodExpiryDate";
 import HomeSlider from "../pages/HomeSlider";
 import CounterUpFood from "./CounterUpFood";
 import WhyChooseUs from "../pages/WhyChooseUs";
+import FeatureItems from "../pages/FeatureItems";
 
 const Home = () => {
   const data = useLoaderData();
@@ -11,6 +12,7 @@ const Home = () => {
   return (
     <div>
       <HomeSlider></HomeSlider>
+      <FeatureItems></FeatureItems>
       <div>
         <h2 className="text-3xl font-bold pt-20 text-center">
           Upcoming Expiriy date
