@@ -10,13 +10,13 @@ const NavBar = () => {
   console.log(user);
   const links = (
     <>
-      <li>
+      <li className="font-bold">
         <NavLink to={"/"}>
           {" "}
           <a>Home</a>
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold">
         <NavLink to={"/fridge"}>
           {" "}
           <a>Fridge</a>
@@ -25,13 +25,13 @@ const NavBar = () => {
 
       {user && (
         <>
-          <li>
+          <li className="font-bold">
             <NavLink to={"/add-food"}>
               {" "}
               <a>Add Food</a>
             </NavLink>
           </li>
-          <li>
+          <li className="font-bold">
             <NavLink to={"/my-item"}>
               {" "}
               <a>My Item</a>
@@ -102,16 +102,16 @@ const NavBar = () => {
                   {user.displayName}
                 </div>
               </div>
-              <button className="btn ml-3" onClick={handleLogout}>
+              <button className="btn ml-3 btn-secondary" onClick={handleLogout}>
                 Sign Out
               </button>
             </>
           ) : (
             <>
-              <NavLink to="/auth/login" className="btn">
+              <NavLink to="/auth/login" className="btn btn-secondary">
                 Login
               </NavLink>
-              <NavLink to="/auth/register" className="btn">
+              <NavLink to="/auth/register" className="btn btn-secondary">
                 Register
               </NavLink>
             </>
