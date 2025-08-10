@@ -9,23 +9,36 @@ const FeatureItems = () => {
   const slides = [
     {
       src: "https://i.ibb.co.com/pjjxqSGT/h2-product-1-1.png",
-      alt: "Product 1",
-      title: "Pasta Mixed Prawn",
+      title: "Pasta with Mixed Prawns",
     },
     {
       src: "https://i.ibb.co.com/whMWfLJZ/h2-product-2.png",
-      alt: "Product 2",
-      title: "Product 2",
+      title: "Grilled Chicken with Vegetables",
     },
     {
       src: "https://i.ibb.co.com/ccsrNxtm/h2-product-3-1.png",
-      alt: "Product 3",
-      title: "Product 3",
+      title: "Fresh Garden Salad",
     },
     {
       src: "https://i.ibb.co.com/39XvJs6g/h2-product-4-1.png",
-      alt: "Product 4",
-      title: "Product 4",
+      title: "Cheesy Garlic Bread",
+    },
+    // duplicates
+    {
+      src: "https://i.ibb.co.com/pjjxqSGT/h2-product-1-1.png",
+      title: "Pasta with Mixed Prawns",
+    },
+    {
+      src: "https://i.ibb.co.com/whMWfLJZ/h2-product-2.png",
+      title: "Grilled Chicken with Vegetables",
+    },
+    {
+      src: "https://i.ibb.co.com/ccsrNxtm/h2-product-3-1.png",
+      title: "Fresh Garden Salad",
+    },
+    {
+      src: "https://i.ibb.co.com/39XvJs6g/h2-product-4-1.png",
+      title: "Cheesy Garlic Bread",
     },
   ];
 
